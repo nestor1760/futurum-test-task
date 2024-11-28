@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ModalComponent } from './components/modal/modal.component';
 import { CommonModule } from '@angular/common';
-import { ICampaign } from './models/campaign';
 import { CampaignItemComponent } from './components/campaign-item/campaign-item.component';
 import { CampaignListComponent } from './components/campaign-list/campaign-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,15 +24,4 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'futurum test task';
-
-  allCampaign: ICampaign[] = []
-  constructor(private campaignListService: CampaignListService) { }
-
-  ngOnInit(): void {
-    this.campaignListService.getAll().subscribe((data) => {
-      console.log(data);
-
-      this.allCampaign = data
-    })
-  }
 }
