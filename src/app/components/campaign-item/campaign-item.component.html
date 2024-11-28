@@ -1,0 +1,23 @@
+<div class="campaign-card">
+  <h2 class="title">{{campaign.name}}</h2>
+  <div class="info">
+    <p><strong>Keywords:</strong></p>
+    <div class="keywords">
+      <span *ngFor="let keyword of campaign.keywords"></span>
+    </div>
+  </div>
+
+  <div class="funding-info">
+    <div class="fund">Funding: {{campaign.fund | currency}}</div>
+    <div class="bid">Bid: {{campaign.bid}}</div>
+  </div>
+
+  <div class="status" [ngClass]="{'active': campaign.status === 'on', 'inactive': campaign.status === 'off'}">
+    {{campaign.status}}
+  </div>
+
+  <div class="location">
+    <span class="town">{{campaign.town}}</span>
+    <span class="radius">{{campaign.radius}} km radius</span>
+  </div>
+</div>

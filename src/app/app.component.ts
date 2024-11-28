@@ -1,13 +1,39 @@
+import { CampaignListService } from './components/campaign-list/campaign-list.service';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ModalComponent } from './components/modal/modal.component';
+import { CommonModule } from '@angular/common';
+import { ICampaign } from './models/campaign';
+import { CampaignItemComponent } from './components/campaign-item/campaign-item.component';
+import { CampaignListComponent } from './components/campaign-list/campaign-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    ModalComponent,
+    CampaignItemComponent,
+    CampaignListComponent,
+    HttpClientModule,
+    CommonModule,
+  ],
+  providers: [CampaignListService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'futurum-task';
+  title = 'futurum test task';
+
+  allCampaign: ICampaign[] = []
+  constructor(private campaignListService: CampaignListService) { }
+
+  ngOnInit(): void {
+    this.campaignListService.getAll().subscribe((data) => {
+      console.log(data);
+
+      this.allCampaign = data
+    })
+  }
 }
