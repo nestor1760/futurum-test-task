@@ -13,14 +13,14 @@ header {
   padding: 0 10px;
   border-radius: 10px;
   border: none;
-  background-color: green;
+  background-color: rgb(56, 56, 196);
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .btn:hover {
-  background-color: rgb(103, 138, 50);
+  background-color: rgb(59, 90, 192);
 }
 
 @keyframes animationUp {

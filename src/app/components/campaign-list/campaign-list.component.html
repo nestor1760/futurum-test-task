@@ -1,9 +1,8 @@
-<div class="campaign-list">
-  <div *ngIf="allCampaign.length; else noData">
-    <app-campaign-item *ngFor="let campaign of allCampaign" [campaign]="campaign"></app-campaign-item>
-  </div>
-
-  <ng-template #noData>
-    <p>No campaigns available...</p>
-  </ng-template>
+<div *ngIf="allCampaign.length; else noData" class="campaign-list">
+  <app-campaign-item *ngFor="let campaign of allCampaign" [campaign]="campaign"
+    (delete)="deleteCampaign($event)"></app-campaign-item>
 </div>
+
+<ng-template #noData>
+  <p>No campaigns available...</p>
+</ng-template>

@@ -1,15 +1,29 @@
 <div class="campaign-card">
-  <h2 class="title">{{campaign.name}}</h2>
+
+  <div class="card-header">
+    <h2 class="title">{{campaign.name}}</h2>
+    <div class="header-buttons">
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
   <div class="info">
     <p><strong>Keywords:</strong></p>
     <div class="keywords">
-      <span *ngFor="let keyword of campaign.keywords"></span>
+      <span *ngFor="let keyword of campaign.keywords">
+        {{keyword}}
+      </span>
     </div>
   </div>
 
   <div class="funding-info">
     <div class="fund">Funding: {{campaign.fund | currency}}</div>
-    <div class="bid">Bid: {{campaign.bid}}</div>
+    <div class="bid">Bid: {{campaign.bid | currency}}</div>
   </div>
 
   <div class="status" [ngClass]="{'active': campaign.status === 'on', 'inactive': campaign.status === 'off'}">

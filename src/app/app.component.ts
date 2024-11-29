@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormCreate } from './components/form-create/form-create.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { FormCreate } from './components/form-create/form-create.component';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    MatIconModule,
     FormCreate
   ],
   providers: [CampaignListService],

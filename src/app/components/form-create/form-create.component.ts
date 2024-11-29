@@ -14,7 +14,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray } fr
   styleUrl: './form-create.component.css'
 })
 
-export class FormCreate {
+export class FormCreate implements OnInit {
   @Input() openModal: boolean
   @Output() openModalChange = new EventEmitter<boolean>();
 
@@ -25,7 +25,6 @@ export class FormCreate {
   ngOnInit(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      // keywords: ['', Validators.required],
       keywords: this.fb.array([], Validators.required),
       bid: [0, [Validators.required, Validators.min(1)]],
       fund: [0, [Validators.required, Validators.min(1)]],
@@ -54,8 +53,10 @@ export class FormCreate {
       const formData = this.form.value;
       this.campaignListService.createElement(formData).subscribe({
         next: () => {
+          this.campaignListService.fetchCampaigns()
           this.openModal = false
           this.openModalChange.emit(this.openModal)
+
         },
         error: (error) => {
           console.log(error)
@@ -63,7 +64,6 @@ export class FormCreate {
       })
     } else {
       console.log("Form is not valid");
-
     }
   }
 }

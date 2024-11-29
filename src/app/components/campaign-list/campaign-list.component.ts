@@ -4,7 +4,6 @@ import { CampaignListService } from './campaign-list.service';
 import { CampaignItemComponent } from '../campaign-item/campaign-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-campaign-list',
@@ -19,16 +18,19 @@ import { interval, Subscription } from 'rxjs';
 })
 export class CampaignListComponent implements OnInit {
   allCampaign: ICampaign[] = []
-  private pollingSubscription!: Subscription
 
   constructor(private campaignListService: CampaignListService) { }
 
   ngOnInit(): void {
-    // this.pollingSubscription = interval(1000).subscribe(() => {
-    this.campaignListService.getAll().subscribe((data) => {
+    this.campaignListService.getCampaigns().subscribe((data) => {
       this.allCampaign = data
     })
+    this.campaignListService.fetchCampaigns()
+  }
 
-    // })
+  deleteCampaign(id: number): void {
+    this.campaignListService.deleteElement(id).subscribe(() => {
+      this.allCampaign = this.allCampaign.filter((campaign) => campaign.id !== id);
+    });
   }
 }
