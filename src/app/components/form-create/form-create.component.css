@@ -5,6 +5,8 @@ form {
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+  position: relative;
+  overflow: visible;
 }
 
 label {
@@ -12,6 +14,7 @@ label {
 }
 
 .input-container {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -26,7 +29,7 @@ input, select {
 }
 
 button {
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 10px;
   background-color: green;
   color: white;
@@ -37,4 +40,42 @@ button {
 
 button[disabled] {
   background-color: gray;
+}
+
+.keywords-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.key-btn {
+  width: 30px;
+  border-radius: 5px;
+  margin: 0 0 0 5px;
+}
+
+.keywords-container {
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.keyword-block {
+  max-width: 390px;
+  display: inline-flex; 
+  align-items: center; 
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.keyword-item {
+  padding: 5px 10px; 
+  margin: 5px; 
+  background-color: #f0f0f0; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
 }

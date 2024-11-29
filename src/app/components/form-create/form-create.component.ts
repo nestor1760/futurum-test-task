@@ -1,15 +1,14 @@
 import { CampaignListService } from './../campaign-list/campaign-list.service';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
-import { ICampaign } from '../../models/campaign';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-form-create',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './form-create.component.html',
   styleUrl: './form-create.component.css'
@@ -19,31 +18,6 @@ export class FormCreate {
   @Input() openModal: boolean
   @Output() openModalChange = new EventEmitter<boolean>();
 
-  // constructor(private campaignListService: CampaignListService) { }
-  // formData: ICampaign = {
-  //   id: 0,
-  //   name: '',
-  //   keywords: [''],
-  //   bid: 0,
-  //   fund: 0,
-  //   status: '',
-  //   town: '',
-  //   radius: 0
-  // }
-
-  // create() {
-  //   this.campaignListService.createElement(this.formData).subscribe({
-  //     next: () => {
-  //       this.openModal = false
-  //       this.openModalChange.emit(this.openModal);
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-
-  //     }
-  //   })
-  // }
-
   form: FormGroup
 
   constructor(private campaignListService: CampaignListService, private fb: FormBuilder) { }
@@ -51,13 +25,28 @@ export class FormCreate {
   ngOnInit(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      keywords: ['', Validators.required],
+      // keywords: ['', Validators.required],
+      keywords: this.fb.array([], Validators.required),
       bid: [0, [Validators.required, Validators.min(1)]],
       fund: [0, [Validators.required, Validators.min(1)]],
       status: ['', Validators.required],
       town: ['', Validators.required],
       radius: [0, [Validators.required, Validators.min(1)]],
     });
+  }
+
+  get keywords(): FormArray {
+    return this.form.get('keywords') as FormArray;
+  }
+
+  addKeyword(keyword: string): void {
+    if (keyword.trim()) {
+      this.keywords.push(this.fb.control(keyword.trim()));
+    }
+  }
+
+  removeKeyword(index: number): void {
+    this.keywords.removeAt(index);
   }
 
   create(): void {

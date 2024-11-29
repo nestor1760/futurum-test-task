@@ -28,6 +28,5 @@ import { FormCreate } from './components/form-create/form-create.component';
 })
 export class AppComponent {
   title = 'Campaign page';
-
   modalOpen: boolean = false
 }

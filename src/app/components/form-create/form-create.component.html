@@ -1,20 +1,35 @@
 <form [formGroup]="form" (ngSubmit)="create()">
+
   <div class="input-container">
     <label for="name">Campaign Name</label>
     <input id="name" formControlName="name" type="text" />
   </div>
-  <div class="input-container">
-    <label for="keywords">Keywords</label>
-    <input id="keywords" formControlName="keywords" type="text" />
+  <div class="keywords-container">
+    <div class="keywords-form">
+      <label for="keywords">Keywords</label>
+      <input id="keywords" #keywordInput type="text" />
+      <button class="key-btn" type="button" (click)="addKeyword(keywordInput.value); keywordInput.value=''">
+        +
+      </button>
+    </div>
+    <div class="keyword-block">
+      <div *ngFor="let keyword of keywords.controls; let i = index" class="keyword-item">
+        <span>{{ keyword.value }}</span>
+        <button type="button" (click)="removeKeyword(i)" class="key-btn">-</button>
+      </div>
+    </div>
   </div>
+
   <div class="input-container">
     <label for="bid">Bid Amount</label>
     <input id="bid" formControlName="bid" type="number" />
   </div>
+
   <div class="input-container">
     <label for="fund">Campaign Fund</label>
     <input id="fund" formControlName="fund" type="number" />
   </div>
+
   <div class="input-container">
     <label for="status">Status</label>
     <select id="status" formControlName="status">
@@ -22,6 +37,7 @@
       <option value="off">Off</option>
     </select>
   </div>
+
   <div class="input-container">
     <label for="town">Town</label>
     <select id="town" formControlName="town">
@@ -31,9 +47,12 @@
       <option>Warsaw</option>
     </select>
   </div>
+
   <div class="input-container">
     <label for="radius">Radius (km)</label>
     <input id="radius" formControlName="radius" type="number" />
   </div>
+
+  <button type="submit" [disabled]="form.invalid">Create Campaign</button>
+
 </form>
-<button type="submit" [disabled]="form.invalid">Create Campaign</button>

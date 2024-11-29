@@ -24,11 +24,11 @@ export class CampaignListComponent implements OnInit {
   constructor(private campaignListService: CampaignListService) { }
 
   ngOnInit(): void {
-    this.pollingSubscription = interval(1000).subscribe(() => {
-      this.campaignListService.getAll().subscribe((data) => {
-        this.allCampaign = data
-      })
-
+    // this.pollingSubscription = interval(1000).subscribe(() => {
+    this.campaignListService.getAll().subscribe((data) => {
+      this.allCampaign = data
     })
+
+    // })
   }
 }
