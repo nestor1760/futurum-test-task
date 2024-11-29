@@ -7,9 +7,13 @@ import { ICampaign } from '../../models/campaign';
 })
 export class CampaignListService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getAll() {
-    return this.http.get<ICampaign[]>('http://localhost:3000/campaigns')
+    return this.httpClient.get<ICampaign[]>('http://localhost:3000/campaigns')
+  }
+
+  createElement(item: ICampaign) {
+    return this.httpClient.post('http://localhost:3000/campaigns', item)
   }
 }

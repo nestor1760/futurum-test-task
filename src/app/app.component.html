@@ -1,6 +1,9 @@
 <section class="wrapper">
-  <h1>{{title | titlecase}}</h1>
+  <app-header [title]="title" [modalOpen]="modalOpen" (modalOpenChange)="modalOpen=$event"></app-header>
   <div class="app-container">
     <app-campaign-list></app-campaign-list>
   </div>
+  <app-modal *ngIf="modalOpen" [(openModal)]="modalOpen" title="Create new campaign">
+    <app-form-create [(openModal)]="modalOpen"></app-form-create>
+  </app-modal>
 </section>
