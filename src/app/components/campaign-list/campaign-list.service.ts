@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICampaign } from '../../models/campaign';
-import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, switchMap, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,18 @@ export class CampaignListService {
     );
   }
 
-  deleteElement(id: number) {
-    return this.httpClient.delete<void>(`${this.url}/${id}`)
+  deleteElement(id: number): Observable<ICampaign[]> {
+    return this.httpClient.delete<ICampaign>(`${this.url}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting campaign:', error)
+        return throwError(() => error)
+      }),
+      switchMap(() => {
+        return this.httpClient.get<ICampaign[]>(this.url)
+      }),
+      tap((updatedCampaigns) => {
+        this.campaigns$.next(updatedCampaigns)
+      })
+    );
   }
 }

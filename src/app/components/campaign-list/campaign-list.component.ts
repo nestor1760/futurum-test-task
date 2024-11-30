@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CampaignItemComponent,
     HttpClientModule,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './campaign-list.component.html',
   styleUrl: './campaign-list.component.css'

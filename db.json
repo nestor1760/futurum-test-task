@@ -1,18 +1,16 @@
 {
   "campaigns": [
     {
-      "id": "2bce",
-      "name": "Campaign 4",
+      "id": "f1a0",
+      "name": "Campaign 6",
       "keywords": [
-        "123",
-        "123",
         "123"
       ],
-      "bid": 20,
-      "fund": 1000,
-      "status": "on",
-      "town": "Lublin",
-      "radius": 12
+      "bid": 123,
+      "fund": 4600,
+      "status": "off",
+      "town": "New York",
+      "radius": 4
     }
   ]
 }

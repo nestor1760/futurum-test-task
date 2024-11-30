@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { maxKeywords } from './utils/maxKeywords';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-create',
@@ -10,15 +11,19 @@ import { maxKeywords } from './utils/maxKeywords';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   templateUrl: './form-create.component.html',
   styleUrl: './form-create.component.css'
 })
 
 export class FormCreate implements OnInit {
+  @Input() userBalance: number
   @Input() title: string
   @Input() openModal: boolean
   @Output() openModalChange = new EventEmitter<boolean>();
+  @Output() userBalanceChange = new EventEmitter<number>();
+
 
   form: FormGroup
   submitted = false
@@ -51,8 +56,20 @@ export class FormCreate implements OnInit {
     this.keywords.removeAt(index);
   }
 
+  checkBalance(): boolean {
+    const fund = this.form.get('fund')?.value;
+    console.log(this.userBalance);
+
+    return this.userBalance >= fund;
+  }
+
   create(): void {
     this.submitted = true
+
+    if (!this.checkBalance()) {
+      alert('Insufficient balance to create this campaign!');
+      return;
+    }
 
     if (this.form.valid) {
       const formData = this.form.value;
@@ -61,6 +78,9 @@ export class FormCreate implements OnInit {
           this.campaignListService.fetchCampaigns()
           this.openModal = false
           this.openModalChange.emit(this.openModal)
+
+          const newBalance = this.userBalance - formData.fund;
+          this.userBalanceChange.emit(newBalance);
 
         },
         error: (error) => {

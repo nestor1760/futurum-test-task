@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormCreate } from './components/form-create/form-create.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FormDeleteComponent } from './components/form-delete/form-delete.component';
+import { UserBalanceComponent } from './components/user-balance/user-balance.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ import { FormDeleteComponent } from './components/form-delete/form-delete.compon
     ReactiveFormsModule,
     MatIconModule,
     FormCreate,
-    FormDeleteComponent
+    FormDeleteComponent,
+    UserBalanceComponent
   ],
   providers: [CampaignListService],
   templateUrl: './app.component.html',
@@ -33,4 +35,10 @@ import { FormDeleteComponent } from './components/form-delete/form-delete.compon
 export class AppComponent {
   title = 'Campaign page';
   modalOpen: boolean = false
+  userBalance: number = 10000
+  remainingBalance: number
+
+  updateRemainingBalance(newRemainingBalance: number): void {
+    this.remainingBalance = newRemainingBalance;
+  }
 }

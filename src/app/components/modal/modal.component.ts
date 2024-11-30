@@ -21,6 +21,5 @@ export class ModalComponent {
   closeModalWindow() {
     this.openModal = false
     this.openModalChange.emit(this.openModal)
-    console.log(this.openModal);
   }
 }

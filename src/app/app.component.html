@@ -1,9 +1,12 @@
 <section class="wrapper">
   <app-header [title]="title" [modalOpen]="modalOpen" (modalOpenChange)="modalOpen=$event"></app-header>
+  <app-user-balance [userBalance]="userBalance"
+    (remainingBalanceChange)="updateRemainingBalance($event)"></app-user-balance>
   <div class="app-container">
     <app-campaign-list></app-campaign-list>
   </div>
   <app-modal *ngIf="modalOpen" [(openModal)]="modalOpen">
-    <app-form-create [(openModal)]="modalOpen" title="Create new campaign"></app-form-create>
+    <app-form-create [(openModal)]="modalOpen" title="Create new campaign"
+      [userBalance]="remainingBalance"></app-form-create>
   </app-modal>
 </section>
