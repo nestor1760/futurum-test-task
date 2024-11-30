@@ -1,9 +1,5 @@
 <div class="modal-overlay" (click)="closeModalWindow()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h2>{{title | titlecase}}</h2>
-      <button class="btn-close" (click)="closeModalWindow()">X</button>
-    </div>
     <ng-content></ng-content>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { CampaignListService } from './../campaign-list/campaign-list.service';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
+import { maxKeywords } from './utils/maxKeywords';
 
 @Component({
   selector: 'app-form-create',
@@ -15,18 +16,20 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray } fr
 })
 
 export class FormCreate implements OnInit {
+  @Input() title: string
   @Input() openModal: boolean
   @Output() openModalChange = new EventEmitter<boolean>();
 
   form: FormGroup
+  submitted = false
 
   constructor(private campaignListService: CampaignListService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      keywords: this.fb.array([], Validators.required),
-      bid: [0, [Validators.required, Validators.min(1)]],
+      keywords: this.fb.array([], [Validators.required, maxKeywords(5)]),
+      bid: [0, [Validators.required, Validators.min(15)]],
       fund: [0, [Validators.required, Validators.min(1)]],
       status: ['', Validators.required],
       town: ['', Validators.required],
@@ -49,6 +52,8 @@ export class FormCreate implements OnInit {
   }
 
   create(): void {
+    this.submitted = true
+
     if (this.form.valid) {
       const formData = this.form.value;
       this.campaignListService.createElement(formData).subscribe({
@@ -66,4 +71,11 @@ export class FormCreate implements OnInit {
       console.log("Form is not valid");
     }
   }
+
+  closeModalWindow() {
+    this.openModal = false
+    this.openModalChange.emit(this.openModal)
+    console.log(this.openModal);
+  }
+
 }

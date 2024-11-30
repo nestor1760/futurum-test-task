@@ -1,17 +1,18 @@
 {
   "campaigns": [
     {
-      "id": "f821",
-      "name": "Campaign 1",
+      "id": "2bce",
+      "name": "Campaign 4",
       "keywords": [
-        "key1",
-        "key2"
+        "123",
+        "123",
+        "123"
       ],
-      "bid": 15,
-      "fund": 78540,
+      "bid": 20,
+      "fund": 1000,
       "status": "on",
-      "town": "Poznan",
-      "radius": 4
+      "town": "Lublin",
+      "radius": 12
     }
   ]
 }

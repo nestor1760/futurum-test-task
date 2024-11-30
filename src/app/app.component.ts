@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormCreate } from './components/form-create/form-create.component';
 import { MatIconModule } from '@angular/material/icon';
+import { FormDeleteComponent } from './components/form-delete/form-delete.component';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    FormCreate
+    FormCreate,
+    FormDeleteComponent
   ],
   providers: [CampaignListService],
   templateUrl: './app.component.html',

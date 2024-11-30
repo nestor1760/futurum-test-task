@@ -6,7 +6,7 @@
       <button mat-icon-button>
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="onDelete()">
+      <button mat-icon-button (click)="openConfirmModal()">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
@@ -35,3 +35,9 @@
     <span class="radius">{{campaign.radius}} km radius</span>
   </div>
 </div>
+
+<app-modal *ngIf="confirmModal" [(openModal)]="confirmModal">
+  <app-form-delete (confirmDelete)="onConfirmDelete()" (cancelDelete)="onCancelDelete()"
+    title="Confirm the deletion of the campaign">
+  </app-form-delete>
+</app-modal>

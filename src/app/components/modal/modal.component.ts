@@ -15,7 +15,6 @@ import { FormCreate } from '../form-create/form-create.component';
 
 
 export class ModalComponent {
-  @Input() title: string
   @Input() openModal: boolean
   @Output() openModalChange = new EventEmitter<boolean>();
 

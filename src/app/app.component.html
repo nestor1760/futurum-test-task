@@ -3,7 +3,7 @@
   <div class="app-container">
     <app-campaign-list></app-campaign-list>
   </div>
-  <app-modal *ngIf="modalOpen" [(openModal)]="modalOpen" title="Create new campaign">
-    <app-form-create [(openModal)]="modalOpen"></app-form-create>
+  <app-modal *ngIf="modalOpen" [(openModal)]="modalOpen">
+    <app-form-create [(openModal)]="modalOpen" title="Create new campaign"></app-form-create>
   </app-modal>
 </section>

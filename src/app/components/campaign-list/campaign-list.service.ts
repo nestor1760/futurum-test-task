@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICampaign } from '../../models/campaign';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +17,26 @@ export class CampaignListService {
   }
 
   fetchCampaigns(): void {
-    this.httpClient.get<ICampaign[]>(this.url).subscribe((data) => {
+    this.httpClient.get<ICampaign[]>(this.url).pipe(
+      catchError((error) => {
+        console.error('Error fetching campaigns:', error);
+        return throwError(() => error);
+      })
+    ).subscribe((data) => {
       this.campaigns$.next(data);
     });
   }
 
-  createElement(item: ICampaign) {
-    return this.httpClient.post('http://localhost:3000/campaigns', item)
+  createElement(item: ICampaign): Observable<ICampaign> {
+    return this.httpClient.post<ICampaign>(this.url, item).pipe(
+      catchError((error) => {
+        console.error('Error creating campaign:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   deleteElement(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`)
+    return this.httpClient.delete<void>(`${this.url}/${id}`)
   }
 }
