@@ -2,15 +2,28 @@
   "campaigns": [
     {
       "id": "f1a0",
-      "name": "Campaign 6",
+      "name": "Test 2",
       "keywords": [
         "123"
       ],
-      "bid": 123,
-      "fund": 4600,
+      "bid": 30,
+      "fund": 90,
+      "status": "on",
+      "town": "Cracow",
+      "radius": 2
+    },
+    {
+      "id": "9e01",
+      "name": "Test 2",
+      "keywords": [
+        "test2",
+        "test3"
+      ],
+      "bid": 24,
+      "fund": 5000,
       "status": "off",
-      "town": "New York",
-      "radius": 4
+      "town": "Lublin",
+      "radius": 2
     }
   ]
 }

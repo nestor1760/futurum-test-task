@@ -11,6 +11,7 @@ import { FormCreate } from './components/form-create/form-create.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FormDeleteComponent } from './components/form-delete/form-delete.component';
 import { UserBalanceComponent } from './components/user-balance/user-balance.component';
+import { FormEditComponent } from './components/form-edit/form-edit.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ import { UserBalanceComponent } from './components/user-balance/user-balance.com
     MatIconModule,
     FormCreate,
     FormDeleteComponent,
-    UserBalanceComponent
+    UserBalanceComponent,
+    FormEditComponent
   ],
   providers: [CampaignListService],
   templateUrl: './app.component.html',

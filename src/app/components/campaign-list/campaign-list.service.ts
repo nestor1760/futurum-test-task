@@ -50,4 +50,16 @@ export class CampaignListService {
       })
     );
   }
+
+  updateElement(id: number, updatedItem: Partial<ICampaign>): Observable<ICampaign> {
+    return this.httpClient.patch<ICampaign>(`${this.url}/${id}`, updatedItem).pipe(
+      tap(() => {
+        this.fetchCampaigns()
+      }),
+      catchError((error) => {
+        console.error('Error updating campaign:', error)
+        return throwError(() => error)
+      })
+    );
+  }
 }

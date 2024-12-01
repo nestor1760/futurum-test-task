@@ -1,6 +1,6 @@
 <div *ngIf="allCampaign.length; else noData" class="campaign-list">
-  <app-campaign-item *ngFor="let campaign of allCampaign" [campaign]="campaign"
-    (delete)="deleteCampaign($event)"></app-campaign-item>
+  <app-campaign-item *ngFor="let campaign of allCampaign" [campaign]="campaign" (delete)="deleteCampaign($event)"
+    [userBalance]="userBalance"></app-campaign-item>
 </div>
 
 <ng-template #noData>

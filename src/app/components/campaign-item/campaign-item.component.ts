@@ -4,6 +4,7 @@ import { ICampaign } from '../../models/campaign';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalComponent } from '../modal/modal.component';
 import { FormDeleteComponent } from '../form-delete/form-delete.component';
+import { FormEditComponent } from '../form-edit/form-edit.component';
 
 @Component({
   selector: 'app-campaign-item',
@@ -12,7 +13,8 @@ import { FormDeleteComponent } from '../form-delete/form-delete.component';
     CommonModule,
     MatIconModule,
     ModalComponent,
-    FormDeleteComponent
+    FormDeleteComponent,
+    FormEditComponent
   ],
   templateUrl: './campaign-item.component.html',
   styleUrl: './campaign-item.component.css'
@@ -20,9 +22,12 @@ import { FormDeleteComponent } from '../form-delete/form-delete.component';
 export class CampaignItemComponent {
 
   confirmModal: boolean = false
+  editModal: boolean = false
 
   @Input() campaign: ICampaign
+  @Input() userBalance: number
   @Output() delete = new EventEmitter<number>()
+  @Output() update = new EventEmitter<ICampaign>();
 
   openConfirmModal(): void {
     this.confirmModal = true
@@ -35,5 +40,19 @@ export class CampaignItemComponent {
 
   onCancelDelete(): void {
     this.confirmModal = false
+  }
+
+  openEditModal(): void {
+    this.editModal = true
+  }
+
+  closeEditModal(): void {
+    this.editModal = false
+  }
+
+  getNewCampaign(updatedCampaign: ICampaign): void {
+    this.update.emit(updatedCampaign)
+    this.campaign = updatedCampaign
+    this.closeEditModal()
   }
 }

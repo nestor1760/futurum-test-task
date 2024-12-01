@@ -3,7 +3,7 @@
   <div class="card-header">
     <h2 class="title">{{campaign.name}}</h2>
     <div class="header-buttons">
-      <button mat-icon-button>
+      <button mat-icon-button (click)="openEditModal()">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button (click)="openConfirmModal()">
@@ -40,4 +40,10 @@
   <app-form-delete (confirmDelete)="onConfirmDelete()" (cancelDelete)="onCancelDelete()"
     title="Confirm the deletion of the campaign">
   </app-form-delete>
+</app-modal>
+
+<app-modal *ngIf="editModal" [(openModal)]="editModal">
+  <app-form-edit [userBalance]="userBalance" [campaign]="campaign" title="Update campaign data"
+    (updateCampaign)="getNewCampaign($event)" (closeEditModal)="closeEditModal()">
+  </app-form-edit>
 </app-modal>

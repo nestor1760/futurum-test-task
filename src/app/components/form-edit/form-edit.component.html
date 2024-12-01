@@ -1,0 +1,233 @@
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-header">
+    <h2>{{title | titlecase}}</h2>
+    <button class="btn-close" (click)="closeModalWindow()">X</button>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="name">Campaign Name</label>
+      <input id="name" formControlName="name" type="text" />
+    </div>
+    <div class="error-item" *ngIf="form.get('name')?.invalid && (form.get('name')?.touched || submitted)">
+      Campaign Name is required.
+    </div>
+  </div>
+
+  <div class="keywords-container">
+    <div class="keywords-form">
+      <label for="keywords">Keywords</label>
+      <input id="keywords" #keywordInput type="text" />
+      <button class="key-btn" type="button" (click)="addKeyword(keywordInput.value); keywordInput.value=''"
+        [disabled]="keywords.length >= 5">
+        +
+      </button>
+    </div>
+    <div class="keyword-block">
+      <div *ngFor="let keyword of keywords.controls; let i = index" class="keyword-item">
+        <span>{{ keyword.value }}</span>
+        <button type="button" (click)="removeKeyword(i)" class="key-btn">-</button>
+      </div>
+    </div>
+    <div class="error-item" *ngIf="keywords?.invalid && (keywords?.touched || submitted)">
+      Please add at least one keyword.
+    </div>
+    <div class="error-item" *ngIf="keywords.invalid && keywords.errors?.maxKeywords">
+      You can only add up to 5 keywords.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="bid">Bid Amount</label>
+      <input id="bid" formControlName="bid" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('bid')?.invalid && (form.get('bid')?.touched || submitted)">
+      <span *ngIf="form.get('bid')?.errors?.['required']">Bid Amount is required.</span>
+      <span *ngIf="form.get('bid')?.errors?.['min']">Minimum bid amount is 15.</span>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="fund">Campaign Fund</label>
+      <input id="fund" formControlName="fund" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('fund')?.invalid && (form.get('fund')?.touched || submitted)">
+      <span *ngIf="form.get('fund')?.errors?.['required']">Campaign Fund is required.</span>
+      <span *ngIf="form.get('fund')?.errors?.['min']">Minimum campaign fund is 1.</span>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </div>
+    <div class="error-item" *ngIf="form.get('status')?.invalid && (form.get('status')?.touched || submitted)">
+      Status is required.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="town">Town</label>
+      <select id="town" formControlName="town">
+        <option>Cracow</option>
+        <option>Poznan</option>
+        <option>Lublin</option>
+        <option>Warsaw</option>
+        <option>London</option>
+        <option>New York</option>
+        <option>Madrid</option>
+      </select>
+    </div>
+    <div class="error-item" *ngIf="form.get('town')?.invalid && (form.get('town')?.touched || submitted)">
+      Town is required.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="radius">Radius (km)</label>
+      <input id="radius" formControlName="radius" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('radius')?.invalid && (form.get('radius')?.touched || submitted)">
+      <span *ngIf="form.get('radius')?.errors?.['required']">Radius is required.</span>
+      <span *ngIf="form.get('radius')?.errors?.['min']">Minimum radius is 1 km.</span>
+    </div>
+  </div>
+
+  <button type="submit">Update</button>
+</form> -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-header">
+    <h2>{{title | titlecase}}</h2>
+    <button class="btn-close" (click)="closeModalWindow()">X</button>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="name">Campaign Name</label>
+      <input id="name" formControlName="name" type="text" />
+    </div>
+    <div class="error-item" *ngIf="form.get('name')?.invalid && (form.get('name')?.touched)">
+      Campaign Name is required.
+    </div>
+  </div>
+
+  <!-- <div class="keywords-container">
+    <div class="keywords-form">
+      <label for="keywords">Keywords</label>
+      <input id="keywords" #keywordInput type="text" />
+      <button class="key-btn" type="button" (click)="addKeyword(keywordInput.value); keywordInput.value=''"
+        [disabled]="keywords.length >= 5">
+        +
+      </button>
+    </div>
+    <div class="keyword-block">
+      <div *ngFor="let keyword of keywords.controls; let i = index" class="keyword-item">
+        <span>{{ keyword.value }}</span>
+        <button type="button" (click)="removeKeyword(i)" class="key-btn">-</button>
+      </div>
+    </div>
+    <div class="error-item" *ngIf="keywords.length === 0 && (keywords.length)">
+      Please add at least one keyword.
+    </div>
+    <div class="error-item" *ngIf="keywords.length > 5">
+      You can only add up to 5 keywords.
+    </div>
+  </div> -->
+  <div class="keywords-container">
+    <div class="keywords-form">
+      <label for="keywords">Keywords</label>
+      <input id="keywords" #keywordInput type="text" />
+      <button class="key-btn" type="button" (click)="addKeyword(keywordInput.value); keywordInput.value=''"
+        [disabled]="keywords.length >= 5">
+        +
+      </button>
+    </div>
+    <div class="keyword-block">
+      <div *ngFor="let keyword of keywords.controls; let i = index" class="keyword-item">
+        <span>{{ keyword.value }}</span>
+        <button type="button" (click)="removeKeyword(i)" class="key-btn">-</button>
+      </div>
+    </div>
+    <div class="error-item" *ngIf="keywords.length === 0">
+      Please add at least one keyword.
+    </div>
+    <div class="error-item" *ngIf="keywords.length > 5">
+      You can only add up to 5 keywords.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="bid">Bid Amount</label>
+      <input id="bid" formControlName="bid" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('bid')?.invalid && (form.get('bid')?.touched)">
+      <span *ngIf="form.get('bid')?.errors?.['required']">Bid Amount is required.</span>
+      <span *ngIf="form.get('bid')?.errors?.['min']">Minimum bid amount is 15.</span>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="fund">Campaign Fund</label>
+      <input id="fund" formControlName="fund" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('fund')?.invalid && (form.get('fund')?.touched)">
+      <span *ngIf="form.get('fund')?.errors?.['required']">Campaign Fund is required.</span>
+      <span *ngIf="form.get('fund')?.errors?.['min']">Minimum campaign fund is 1.</span>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </div>
+    <div class="error-item" *ngIf="form.get('status')?.invalid && (form.get('status')?.touched)">
+      Status is required.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="town">Town</label>
+      <select id="town" formControlName="town">
+        <option>Cracow</option>
+        <option>Poznan</option>
+        <option>Lublin</option>
+        <option>Warsaw</option>
+        <option>London</option>
+        <option>New York</option>
+        <option>Madrid</option>
+      </select>
+    </div>
+    <div class="error-item" *ngIf="form.get('town')?.invalid && (form.get('town')?.touched)">
+      Town is required.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="input-container">
+      <label for="radius">Radius (km)</label>
+      <input id="radius" formControlName="radius" type="number" />
+    </div>
+    <div class="error-item" *ngIf="form.get('radius')?.invalid && (form.get('radius')?.touched)">
+      <span *ngIf="form.get('radius')?.errors?.['required']">Radius is required.</span>
+      <span *ngIf="form.get('radius')?.errors?.['min']">Minimum radius is 1 km.</span>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Update</button>
+</form>

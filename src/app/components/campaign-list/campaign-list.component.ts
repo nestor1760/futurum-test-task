@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICampaign } from '../../models/campaign';
 import { CampaignListService } from './campaign-list.service';
 import { CampaignItemComponent } from '../campaign-item/campaign-item.component';
@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CampaignListComponent implements OnInit {
   allCampaign: ICampaign[] = []
+  @Input() userBalance: number
 
   constructor(private campaignListService: CampaignListService) { }
 
