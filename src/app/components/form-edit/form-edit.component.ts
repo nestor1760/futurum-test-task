@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICampaign } from '../../models/campaign';
 import { CampaignListService } from '../campaign-list/campaign-list.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { maxKeywords } from '../form-create/utils/maxKeywords';
 
 @Component({
   selector: 'app-form-edit',

@@ -13,17 +13,16 @@
       "radius": 2
     },
     {
-      "id": "9e01",
-      "name": "Test 2",
+      "id": "ea8a",
+      "name": "test 6",
       "keywords": [
-        "test2",
-        "test3"
+        "test2"
       ],
-      "bid": 24,
-      "fund": 5000,
-      "status": "off",
-      "town": "Lublin",
-      "radius": 2
+      "bid": 56,
+      "fund": 3455,
+      "status": "on",
+      "town": "Poznan",
+      "radius": 21
     }
   ]
 }
